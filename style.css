@@ -1,0 +1,285 @@
+:root {
+  --principal: #563394;
+  --principal-oscuro: #432471;
+  --principal-claro: #eee8f7;
+
+  --fondo: #f5f3f8;
+  --tarjeta: #ffffff;
+  --texto: #211b27;
+  --texto-secundario: #655d6b;
+
+  --borde: #c8c1ce;
+  --exito-fondo: #dcf3e3;
+  --exito-texto: #17612e;
+  --alerta-fondo: #fff0ce;
+  --alerta-texto: #795000;
+  --error-fondo: #fde1e1;
+  --error-texto: #842020;
+
+  --sombra: 0 4px 16px rgba(41, 28, 52, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 620px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 14px;
+}
+
+.encabezado {
+  padding: 12px 8px 18px;
+  text-align: center;
+}
+
+.icono-evento {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: var(--principal);
+  color: white;
+  font-size: 30px;
+  line-height: 54px;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-size: 27px;
+}
+
+.encabezado p {
+  margin: 7px 0 0;
+  color: var(--texto-secundario);
+  font-size: 17px;
+}
+
+.tarjeta {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 20px;
+  background: var(--tarjeta);
+  border-radius: 17px;
+  box-shadow: var(--sombra);
+}
+
+.tarjeta h2 {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 23px;
+}
+
+label {
+  display: block;
+  margin: 4px 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 58px;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 11px;
+  background: white;
+  color: var(--texto);
+  font-size: 19px;
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid rgba(86, 51, 148, 0.18);
+  border-color: var(--principal);
+}
+
+#codigoManual {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.ayuda,
+.instruccion {
+  color: var(--texto-secundario);
+  font-size: 16px;
+}
+
+.ayuda {
+  margin: 9px 0 0;
+}
+
+.instruccion {
+  margin: 0 0 16px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.selector-modo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-bottom: 14px;
+  padding: 6px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+}
+
+.tab {
+  min-height: 52px;
+  padding: 9px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--principal);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab.activo {
+  background: var(--principal);
+  color: white;
+}
+
+.lector-qr {
+  width: 100%;
+  margin: 14px 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #e8e5eb;
+}
+
+.lector-qr video,
+.lector-qr canvas {
+  border-radius: 14px;
+}
+
+/*
+ * Ajusta elementos que la librería agrega dentro
+ * del lector.
+ */
+#lectorQr img {
+  max-width: 90px;
+}
+
+#lectorQr select {
+  min-height: 48px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.boton {
+  width: 100%;
+  min-height: 59px;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 11px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.boton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.boton-principal {
+  border: none;
+  background: var(--principal);
+  color: white;
+}
+
+.boton-principal:active {
+  background: var(--principal-oscuro);
+}
+
+.boton-secundario {
+  border: 2px solid var(--principal);
+  background: white;
+  color: var(--principal);
+}
+
+.mensaje {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 17px;
+  border-radius: 13px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.mensaje-alerta {
+  background: var(--alerta-fondo);
+  color: var(--alerta-texto);
+  border-left: 5px solid #dc8b00;
+}
+
+.mensaje-error {
+  background: var(--error-fondo);
+  color: var(--error-texto);
+  border-left: 5px solid #c62828;
+}
+
+.mensaje-exito {
+  background: var(--exito-fondo);
+  color: var(--exito-texto);
+  border-left: 5px solid #258a47;
+}
+
+footer {
+  padding: 12px 0 22px;
+  color: var(--texto-secundario);
+  font-size: 14px;
+  text-align: center;
+}
+
+.oculto {
+  display: none !important;
+}
+
+@media (max-width: 390px) {
+  .contenedor {
+    padding: 9px;
+  }
+
+  .tarjeta {
+    padding: 17px;
+  }
+
+  .encabezado h1 {
+    font-size: 24px;
+  }
+
+  .tab {
+    font-size: 15px;
+  }
+}
