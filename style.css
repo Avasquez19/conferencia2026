@@ -1,22 +1,32 @@
 :root {
-  --principal: #563394;
-  --principal-oscuro: #432471;
-  --principal-claro: #eee8f7;
+  --principal: #874579;
+  --principal-oscuro: #69345e;
+  --principal-claro: #f7e9eb;
 
-  --fondo: #f5f3f8;
+  --rosa: #b98991;
+  --rosa-claro: #fff6f4;
+
+  --verde: #9daa7c;
+  --verde-oscuro: #747750;
+  --verde-claro: #f3f4ea;
+
+  --fondo: #fff6f4;
   --tarjeta: #ffffff;
-  --texto: #211b27;
-  --texto-secundario: #655d6b;
+  --texto: #4a3f3f;
+  --texto-secundario: #76676b;
 
-  --borde: #c8c1ce;
-  --exito-fondo: #dcf3e3;
-  --exito-texto: #17612e;
-  --alerta-fondo: #fff0ce;
-  --alerta-texto: #795000;
-  --error-fondo: #fde1e1;
-  --error-texto: #842020;
+  --borde: #ddc9cd;
 
-  --sombra: 0 4px 16px rgba(41, 28, 52, 0.1);
+  --exito-fondo: #edf2e5;
+  --exito-texto: #5f6843;
+
+  --alerta-fondo: #f7eee0;
+  --alerta-texto: #795d34;
+
+  --error-fondo: #f9e3e5;
+  --error-texto: #842f3d;
+
+  --sombra: 0 4px 16px rgba(115, 74, 87, 0.12);
 }
 
 * {
@@ -56,14 +66,15 @@ select {
 }
 
 .icono-evento {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   margin: 0 auto 10px;
   border-radius: 50%;
-  background: var(--principal);
+  background: var(--rosa);
   color: white;
   font-size: 30px;
-  line-height: 54px;
+  line-height: 58px;
+  box-shadow: 0 4px 12px rgba(185, 137, 145, 0.28);
 }
 
 .encabezado h1 {
@@ -82,7 +93,8 @@ select {
   margin-bottom: 14px;
   padding: 20px;
   background: var(--tarjeta);
-  border-radius: 17px;
+  border: 1px solid var(--borde);
+  border-radius: 18px;
   box-shadow: var(--sombra);
 }
 
@@ -121,6 +133,7 @@ select:focus {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
+  color: var(--principal);
 }
 
 .ayuda,
@@ -145,7 +158,8 @@ select:focus {
   gap: 7px;
   margin-bottom: 14px;
   padding: 6px;
-  background: white;
+  background: #f8eeee;
+  border: 1px solid var(--borde);
   border-radius: 14px;
   box-shadow: var(--sombra);
 }
@@ -171,8 +185,9 @@ select:focus {
   width: 100%;
   margin: 14px 0;
   overflow: hidden;
-  border-radius: 14px;
-  background: #e8e5eb;
+  border: 2px solid var(--rosa);
+  border-radius: 16px;
+  background: var(--rosa-claro);
 }
 
 .lector-qr video,
@@ -221,9 +236,9 @@ select:focus {
 }
 
 .boton-secundario {
-  border: 2px solid var(--principal);
+  border: 2px solid var(--verde-oscuro);
   background: white;
-  color: var(--principal);
+  color: var(--verde-oscuro);
 }
 
 .mensaje {
@@ -240,19 +255,19 @@ select:focus {
 .mensaje-alerta {
   background: var(--alerta-fondo);
   color: var(--alerta-texto);
-  border-left: 5px solid #dc8b00;
+  border-left: 5px solid var(--rosa);
 }
 
 .mensaje-error {
   background: var(--error-fondo);
   color: var(--error-texto);
-  border-left: 5px solid #c62828;
+  border-left: 5px solid #b75a69;
 }
 
 .mensaje-exito {
   background: var(--exito-fondo);
   color: var(--exito-texto);
-  border-left: 5px solid #258a47;
+  border-left: 5px solid var(--verde);
 }
 
 footer {
