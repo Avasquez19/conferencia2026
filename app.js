@@ -8,18 +8,12 @@ const URL_APPS_SCRIPT =
   "https://script.google.com/macros/s/AKfycbyFbpWlUWo04bbKNabW-iJbnGgO9reVNo7-FCDweaDvJlSbcCRobMqeFwgUWBshBcE/exec";
 
 const PREFIJO_CODIGO = "CONF26-";
-const CLAVE_ENCARGADA = "encargadaConferencia";
 
 let lectorQr = null;
 let camaraActiva = false;
 let lecturaEnProceso = false;
 
 document.addEventListener("DOMContentLoaded", function () {
-  restaurarEncargada();
-
-  document
-    .getElementById("encargada")
-    .addEventListener("change", guardarEncargada);
 
   document
     .getElementById("codigoManual")
@@ -32,48 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   mostrarModoQr();
 });
-
-
-function guardarEncargada() {
-  const encargada =
-    document.getElementById("encargada").value;
-
-  if (encargada) {
-    localStorage.setItem(CLAVE_ENCARGADA, encargada);
-  } else {
-    localStorage.removeItem(CLAVE_ENCARGADA);
-  }
-}
-
-
-function restaurarEncargada() {
-  const encargadaGuardada =
-    localStorage.getItem(CLAVE_ENCARGADA);
-
-  if (encargadaGuardada) {
-    document.getElementById("encargada").value =
-      encargadaGuardada;
-  }
-}
-
-
-function obtenerEncargada() {
-  const encargada =
-    document.getElementById("encargada").value.trim();
-
-  if (!encargada) {
-    mostrarMensaje(
-      "Selecciona primero a la hermana encargada.",
-      "error"
-    );
-
-    document.getElementById("encargada").focus();
-    return null;
-  }
-
-  return encargada;
-}
-
 
 async function mostrarModoQr() {
   document.getElementById("modoQr").classList.remove("oculto");
@@ -104,9 +56,7 @@ async function mostrarModoManual() {
 
 
 async function iniciarCamara() {
-  const encargada = obtenerEncargada();
-
-  if (!encargada || camaraActiva) {
+  if (camaraActiva) {
     return;
   }
 
@@ -174,19 +124,9 @@ async function iniciarCamara() {
     camaraActiva = false;
   
     console.error("Error al iniciar la cámara:", error);
-  
-    const nombreError =
-      error && error.name ? error.name : "Sin nombre";
-  
-    const detalleError =
-      error && error.message
-        ? error.message
-        : String(error || "Sin detalle");
-  
+
     mostrarMensaje(
-      `No se pudo activar la cámara. ` +
-      `Error: ${nombreError}. ` +
-      `Detalle: ${detalleError}`,
+      obtenerMensajeErrorCamara(error),
       "error"
     );
   
@@ -270,11 +210,6 @@ async function procesarCodigoLeido(textoDecodificado) {
 
 
 function abrirBusquedaManual() {
-  const encargada = obtenerEncargada();
-
-  if (!encargada) {
-    return;
-  }
 
   const codigo = normalizarCodigo(
     document.getElementById("codigoManual").value
@@ -303,24 +238,10 @@ function abrirBusquedaManual() {
 
 
 function abrirAplicacion(codigo) {
-  const encargada = obtenerEncargada();
-
-  if (!encargada) {
-    lecturaEnProceso = false;
-    return;
-  }
-
-  guardarEncargada();
-
   const parametros = new URLSearchParams({
-    codigo: codigo,
-    encargada: encargada
+    codigo: codigo
   });
 
-  /*
-   * Se abre en la misma pestaña.
-   * Al pulsar "Atrás" en el navegador se vuelve al escáner.
-   */
   window.location.assign(
     `${URL_APPS_SCRIPT}?${parametros.toString()}`
   );
