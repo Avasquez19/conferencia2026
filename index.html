@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Escáner QR para el control de ingreso a la conferencia"
+  >
+
+  <title>Escáner - Conferencia</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Librería de lectura QR -->
+  <script
+    src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+    defer
+  ></script>
+
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <main class="contenedor">
+    <header class="encabezado">
+      <div class="icono-evento">✦</div>
+      <h1>Control de conferencia</h1>
+      <p>Escaneo de entradas</p>
+    </header>
+
+    <!-- Selección de encargada -->
+    <section class="tarjeta">
+      <label for="encargada">Hermana encargada</label>
+
+      <select id="encargada">
+        <option value="">Seleccionar</option>
+        <option value="Hermana 1">Hermana 1</option>
+        <option value="Hermana 2">Hermana 2</option>
+        <option value="Hermana 3">Hermana 3</option>
+        <option value="Hermana 4">Hermana 4</option>
+      </select>
+
+      <p class="ayuda">
+        El nombre quedará guardado en este celular.
+      </p>
+    </section>
+
+    <!-- Navegación entre modos -->
+    <nav class="selector-modo" aria-label="Tipo de búsqueda">
+      <button
+        id="tabQr"
+        type="button"
+        class="tab activo"
+        onclick="mostrarModoQr()"
+      >
+        Escanear QR
+      </button>
+
+      <button
+        id="tabManual"
+        type="button"
+        class="tab"
+        onclick="mostrarModoManual()"
+      >
+        Búsqueda manual
+      </button>
+    </nav>
+
+    <!-- Modo QR -->
+    <section id="modoQr" class="tarjeta">
+      <h2>Escanear código QR</h2>
+
+      <p class="instruccion">
+        Activa la cámara y apunta al QR de la participante.
+      </p>
+
+      <div id="lectorQr" class="lector-qr"></div>
+
+      <button
+        id="botonIniciar"
+        type="button"
+        class="boton boton-principal"
+        onclick="iniciarCamara()"
+      >
+        Activar cámara
+      </button>
+
+      <button
+        id="botonDetener"
+        type="button"
+        class="boton boton-secundario oculto"
+        onclick="detenerCamara()"
+      >
+        Detener cámara
+      </button>
+    </section>
+
+    <!-- Modo manual -->
+    <section id="modoManual" class="tarjeta oculto">
+      <h2>Búsqueda manual</h2>
+
+      <p class="instruccion">
+        Utiliza esta opción si el QR no puede leerse.
+      </p>
+
+      <label for="codigoManual">Código de inscripción</label>
+
+      <input
+        id="codigoManual"
+        type="text"
+        placeholder="CONF26-XXXXX"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        maxlength="20"
+      >
+
+      <button
+        type="button"
+        class="boton boton-principal"
+        onclick="abrirBusquedaManual()"
+      >
+        Buscar inscripción
+      </button>
+    </section>
+
+    <!-- Mensajes -->
+    <section
+      id="mensaje"
+      class="mensaje oculto"
+      role="status"
+      aria-live="polite"
+    ></section>
+
+    <footer>
+      Uso exclusivo del equipo organizador
+    </footer>
+  </main>
+</body>
+</html>
