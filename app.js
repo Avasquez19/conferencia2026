@@ -147,11 +147,7 @@ async function iniciarCamara() {
 
   try {
     await lectorQr.start(
-      {
-        facingMode: {
-          ideal: "environment"
-        }
-      },
+      { facingMode: "environment" },
       configuracion,
       procesarCodigoLeido,
       function () {
@@ -176,13 +172,25 @@ async function iniciarCamara() {
 
   } catch (error) {
     camaraActiva = false;
-
+  
     console.error("Error al iniciar la cámara:", error);
-
+  
+    const nombreError =
+      error && error.name ? error.name : "Sin nombre";
+  
+    const detalleError =
+      error && error.message
+        ? error.message
+        : String(error || "Sin detalle");
+  
     mostrarMensaje(
-      obtenerMensajeErrorCamara(error),
+      `No se pudo activar la cámara. ` +
+      `Error: ${nombreError}. ` +
+      `Detalle: ${detalleError}`,
       "error"
     );
+  
+    actualizarBotonesCamara(false);
   }
 }
 
