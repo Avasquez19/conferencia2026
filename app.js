@@ -208,32 +208,8 @@ async function procesarCodigoLeido(textoDecodificado) {
   abrirAplicacion(codigo);
 }
 
-
 function abrirBusquedaManual() {
-
-  const codigo = normalizarCodigo(
-    document.getElementById("codigoManual").value
-  );
-
-  if (!codigo) {
-    mostrarMensaje(
-      "Escribe el código de inscripción.",
-      "error"
-    );
-
-    return;
-  }
-
-  if (!esCodigoValido(codigo)) {
-    mostrarMensaje(
-      `El código debe tener el formato ${PREFIJO_CODIGO}XXXXX.`,
-      "error"
-    );
-
-    return;
-  }
-
-  abrirAplicacion(codigo);
+  window.location.assign(URL_APPS_SCRIPT);
 }
 
 
