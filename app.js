@@ -5,7 +5,7 @@
  * Google Sheets.
  */
 const URL_APPS_SCRIPT =
-  "https://script.google.com/macros/s/AKfycbyFbpWlUWo04bbKNabW-iJbnGgO9reVNo7-FCDweaDvJlSbcCRobMqeFwgUWBshBcE/exec";
+  "https://script.google.com/macros/s/AKfycbyWFekrYxTunLJrt4naKxjK-NmXC04KE47kQbTIGdCEEghvA-OOjjy22lluSncl4FQU/exec";
 
 const PREFIJO_CODIGO = "CONF26-";
 
